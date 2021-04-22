@@ -1,6 +1,6 @@
 ## Movie Database
 
-My own take on a IMDB like movie database with some social media like integrations.
+My own take on a IMDB like movie database with some social media like integrations. Supports movies, users, people, searching, notifications, etc.
 
 ![](https://i.imgur.com/wZQkwnn.png)
 
