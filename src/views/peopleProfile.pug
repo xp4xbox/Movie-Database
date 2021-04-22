@@ -1,0 +1,64 @@
+extends layout
+
+block content
+    .container
+        p1 #{person.name}
+
+        if isUser && person.name !== "N/A"
+            script(src="/script/peopleProfile.js", type="module")
+
+            if isFollowed === true
+                button(id="watchListBtn").watchlistBtn Unfollow
+            else
+                button(id="watchListBtn").watchlistBtn Follow
+
+        hr.solid
+        br
+        br
+
+        .generalTxt
+            if person.writer && person.writer.length > 0
+                text #[strong Writer]
+
+                ul.circle
+                    each movie in person.writer
+                        li
+                            a(href="/movies/" + movie)
+                                .hyperlink
+                                    text #{movie}
+
+            if person.director && person.director.length > 0
+                text #[strong Director]
+
+                ul.circle
+                    each movie in person.director
+                        li
+                            a(href="/movies/" + movie)
+                                .hyperlink
+                                    text #{movie}
+
+            if person.actor && person.actor.length > 0
+                text #[strong Actor]
+
+                ul.circle
+                    each movie in person.actor
+                        li
+                            a(href="/movies/" + movie)
+                                .hyperlink
+                                    text #{movie}
+
+
+        if person.collabs && person.collabs.length > 0
+            hr.solid
+            br
+
+            .generalTxt
+                text #[strong Frequent Collaborators]
+
+                ul.circle
+                        each collab in person.collabs
+                            li
+                                a(href="/peopleProfile/" + collab)
+                                    .hyperlink
+                                        text #{collab}
+

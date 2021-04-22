@@ -1,0 +1,103 @@
+extends layout
+
+block content
+    .container
+        if access === false
+            p(style="text-align:center;")
+                p1 #[strong You must be a contributing user to access the tools on this page]
+
+        else
+            script(src="/script/contribute.js", type="module")
+
+            .generalTxt
+                text #[strong Add a Person]
+
+            br
+
+            .generalTxt
+                text Name
+
+            input(id="inPerson", type="text")
+            br
+
+            button(id="addPersonBtn").searchBtn Add
+
+            hr.solid
+            br
+            br
+
+            .generalTxt
+                text #[strong Add a Movie]
+
+            br
+
+            .generalTxt
+                text Title
+
+            input(id="inTitle", type="text")
+            br
+
+            .generalTxt
+                text Plot
+
+            input(id="inPlot", type="text")
+            br
+
+            .generalTxt
+                text Runtime in minutes
+
+            input(id="inRuntime", type="text")
+            br
+
+            .generalTxt
+                text Release Year
+
+            input(id="inReleaseYear", type="text")
+            br
+
+            .generalTxt
+                text Rated
+
+            input(id="inRating", type="text")
+            br
+
+            .generalTxt
+                text Genre(s) (Separated with ,)
+
+            .autocomplete
+                input(id="inGenre", type="text", autocomplete="off")
+            br
+            br
+
+            .generalTxt
+                text Writers (Separated with ,)
+
+            .autocomplete
+                input(id="inWriter", type="text", autocomplete="off")
+            br
+
+            .generalTxt
+                text Directors (Separated with ,)
+
+            .autocomplete
+                input(id="inDirector", type="text", autocomplete="off")
+            br
+
+            .generalTxt
+                text Actors (Separated with ,)
+
+            .autocomplete
+                input(id="inActors", type="text", autocomplete="off")
+            br
+
+            br
+
+            .generalTxt
+                text Poster URL (Optional)
+
+            input(id="inPoster", type="text")
+            br
+
+            button(id="addMovieBtn").searchBtn Add
+
+

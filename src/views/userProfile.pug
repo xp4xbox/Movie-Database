@@ -1,0 +1,73 @@
+extends layout
+
+block content
+    script(src="/script/userProfile.js", type="module")
+
+    .container
+        p1 #{user.username}
+
+        if viewingUser
+            if isFollowed
+                button(id="toggleFollowBtn").watchlistBtn Unfollow
+            else
+                button(id="toggleFollowBtn").watchlistBtn Follow
+
+        hr.solid
+        br
+        br
+
+        - var isUserFollowers = (user.userFollowers && user.userFollowers.length > 0)
+        - var isPeopleFollowers = (user.peopleFollowers && user.peopleFollowers.length > 0)
+        - var isWatchList = (user.movieWatchlist && user.movieWatchlist.length > 0)
+        - var isReviews = (user.reviews && user.reviews.length > 0)
+
+        if isUserFollowers || isPeopleFollowers
+            .generalTxt
+                text #[strong Follows]
+
+            ul.circle
+                if isPeopleFollowers
+                    each person in user.peopleFollowers
+                        .generalTxt
+                            li
+                                a(href="/peopleProfile/" + person)
+                                    .hyperlink
+                                        text #{person}
+
+                if isUserFollowers
+                    each pUser in user.userFollowers
+                        .generalTxt
+                            li
+                                a(href="/userProfile/" + pUser)
+                                    .hyperlink
+                                        text #{pUser}
+
+        if isWatchList
+            .generalTxt
+                text #[strong Movies watched]
+
+            ul.circle
+                each movie in user.movieWatchlist
+                    .generalTxt
+                        li
+                            a(href="/movies/" + movie)
+                                .hyperlink
+                                    text #{movie}
+
+        if (isUserFollowers || isPeopleFollowers || isWatchList) && isReviews
+            hr.solid
+            br
+
+        if isReviews
+            .generalTxt
+                text #[strong Movies user has reviewed]
+
+                ul.circle
+                    each review in user.reviews
+                        .generalTxt
+                            li
+                                a(href="/movies/" + review.movie + "/reviews/" + review.index)
+                                    .hyperlink
+                                        text #{review.movie}
+
+

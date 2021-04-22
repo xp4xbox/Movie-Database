@@ -1,0 +1,26 @@
+extends layout
+
+block content
+    script(src="/script/sign.js", type="module")
+
+
+    if !loggedIn || loggedIn === false
+        .container
+            .loginContainer
+                text Username:
+            input(type="text", id="inUsername")
+            br
+
+            .loginContainer
+                text Password:
+            input(type="password", id="inPassword")
+            br
+
+
+            button(id="btnCreateAccount").signButton Create Account
+            .loginBtn
+                button(id="btnLogin").signButton Login
+    else
+        button(id="btnLogOut").signButton Log out
+
+

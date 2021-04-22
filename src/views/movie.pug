@@ -1,0 +1,166 @@
+extends layout
+
+block content
+    script(src="/script/movie.js", type="module")
+
+    .container
+        if movie.Poster || movie.Poster !== ""
+            img(src=movie.Poster).imgPoster
+
+        - var i = 0;
+        each _ in Array(movie.rating)
+            - i++;
+            .starFilled
+                .fa
+                     .fa-star
+
+        while i < 5
+            - i++;
+            .fa
+                .fa-star
+
+        if user
+            if watchList
+                button(id="addToWatchListBtn").watchlistBtn Remove from watch list
+            else
+                button(id="addToWatchListBtn").watchlistBtn Add to watch list
+
+        p #{movie.Title} (#{movie.Year}) #{movie.Rated}
+
+        hr.solid
+        br
+
+        .generalTxt
+            text #[strong Runtime:] #{movie.Runtime} minutes
+        br
+        .generalTxt
+            text #[strong Plot:] #{movie.Plot}
+        br
+
+        each genre in movie.Genre
+            .generalTxt
+                a(href="/genre/" + genre)
+                    .hyperlink
+                        text #{genre}
+
+        hr.solid
+        br
+
+        .generalTxt
+            text #[strong Similar Movies]
+
+        ul.circle
+            each title in movie.similar
+                .generalTxt
+                    li
+                        a(href="/movies/" + title)
+                            .hyperlink
+                                text #{title}
+        hr.solid
+        br
+
+        .generalTxt
+            text #[strong Directed by]
+
+        ul.circle
+            each director in movie.Director
+                .generalTxt
+                    li
+                        a(href="/peopleProfile/" + director)
+                            .hyperlink
+                                text #{director}
+
+        .generalTxt
+            text #[strong Written by]
+
+        ul.circle
+            each writer in movie.Writer
+                .generalTxt
+                    li
+                        a(href="/peopleProfile/" + writer)
+                            .hyperlink
+                                text #{writer}
+
+        .generalTxt
+            text #[strong Actors]
+
+        ul.circle
+            each actor in movie.Actors
+                .generalTxt
+                    li
+                        a(href="/peopleProfile/" + actor)
+                            .hyperlink
+                                text #{actor}
+
+
+        if isAFullReview && movie.reviews && movie.reviews.length > 0
+            hr.solid
+            br
+
+            .generalTxt
+                text #[strong Reviews]
+
+            - let j = 0;
+            each review in movie.reviews
+                if review.basic === false
+                    br
+                    - var i = 0;
+                        each _ in Array(review.rating)
+                               - i++;
+                               .starFilled
+                                   .fa
+                                        .fa-star
+
+                    while i < 5
+                        - i++;
+                            .fa
+                                .fa-star
+                    .generalTxt
+                        br
+                        a(href="/movies/" + movie.Title + "/reviews/" + j)
+                            .hyperlink
+                                text #{review.summary}
+                - j++;
+
+        // check if the user is a registered user
+        if user
+            hr.solid
+            br
+
+            .generalTxt
+                text #[strong Add review]
+            br
+
+            .checkboxTxt
+                text Rating
+            input(type="number", min="1", max="5", id="inScore", value="1")
+            button(id="basicReviewBtn").watchlistBtn Add basic review
+
+            br
+            br
+
+            .generalTxt
+                text Review summary
+
+            input(type="text", id="inSummary")
+
+            br
+
+            .generalTxt
+                text Review text
+
+            textarea(id="txtInFullText").paragraphInput
+
+            br
+            button(id="fullReviewBtn").searchBtn Add full review
+
+
+
+
+
+
+
+
+
+
+

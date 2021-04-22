@@ -1,0 +1,98 @@
+extends layout
+
+block content
+    script(src="/script/ownProfile.js", type="module")
+
+    .container
+        p1 #{user.username}
+
+        br
+        hr.solid
+        br
+
+        if user.notifications && user.notifications.length > 0
+            .generalTxt
+                text #[strong Notifications]
+                br
+
+                ul.circle
+                    each notification in user.notifications
+                        li
+                            a(href="/ownProfile/notification/" + notification.index)
+                                .notificationContainer
+                                    .hyperlink
+                                        text #{notification.text}
+
+
+            hr.solid
+            br
+
+        if user.peopleFollowers && user.peopleFollowers.length > 0
+            .generalTxt
+                text #[strong People you follow]
+
+                ul.circle
+                    each follow in user.peopleFollowers
+                        li
+                            a(href="/peopleProfile/" + follow)
+                                .hyperlink
+                                    text #{follow}
+
+        if user.userFollowers && user.userFollowers.length > 0
+            .generalTxt
+                text #[strong Users you follow]
+
+                ul.circle
+                    each follow in user.userFollowers
+                        li
+                            a(href="/userProfile/" + follow)
+                                .hyperlink
+                                    text #{follow}
+
+
+        if (user.userFollowers && user.userFollowers.length > 0) || (user.peopleFollowers && user.peopleFollowers.length > 0)
+            hr.solid
+            br
+
+
+        if user.movieWatchlist && user.movieWatchlist.length > 0
+            .generalTxt
+                text #[strong Movies you watched]
+
+            ul.circle
+                each movie in user.movieWatchlist
+                    .generalTxt
+                        li
+                            a(href="/movies/" + movie)
+                                .hyperlink
+                                    text #{movie}
+
+        .generalTxt
+            text #[strong Movies recommended to you]
+
+        ul.circle
+            each movie in recMovies
+                .generalTxt
+                    li
+                        a(href="/movies/" + movie)
+                            .hyperlink
+                                text #{movie}
+
+        hr.solid
+        br
+
+        .generalTxt
+            text #[strong Account Type]
+
+        input(type="radio", name="accountType", id="rdRegular", checked=user.isContributing === false)
+        .checkboxTxt
+            text Regular
+
+        input(type="radio", name="accountType", checked=user.isContributing === true)
+        .checkboxTxt
+            text Contributing
+
+        button(id="btnContributing").signButton Save
+
+        div(class="bottomContainer", id="bottomContainer")
+

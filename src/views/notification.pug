@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    script(src="/script/notification.js", type="module")
+
+    .container
+        button(id="removeNotificationBtn").removeNotificationBtn Remove notification
+        br
+        br
+        .generalTxt
+            text #[strong #{notification.text}]
+        br
+        hr.solid
+        br
+        .generalTxt
+            text #{notification.date}

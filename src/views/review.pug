@@ -1,0 +1,33 @@
+extends layout
+
+block content
+    .container
+        - var i = 0;
+        each _ in Array(review.rating)
+            - i++;
+            .starFilled
+                .fa
+                    .fa-star
+
+        while i < 5
+            - i++;
+                .fa
+                    .fa-star
+
+        br
+        br
+        hr.solid
+        br
+
+        p1 #{review.summary}
+
+        br
+        br
+
+        .generalTxt
+            text #{review.text}
+        br
+        br
+
+        .reviewauthorTxt
+            text #[strong Review from #{review.user}]
