@@ -11,7 +11,7 @@ const mc = require('mongodb').MongoClient;
 const app = express();
 const port = 3000;
 
-const USE_HTTPS = true;
+const USE_HTTPS = false;
 
 const REC_MOVIE_LIST = 12;
 const SIMILAR_MOVIE_LIST_SIZE = 8;
