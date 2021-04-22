@@ -2,6 +2,8 @@
 
 My own take on a IMDB like movie database with some social media like integrations.
 
+![](https://i.imgur.com/wZQkwnn.png)
+
 ### Config
 
 1.	Run `npm install` in a command window to install the modules.
