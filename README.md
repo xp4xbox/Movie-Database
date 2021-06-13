@@ -1,6 +1,6 @@
 ## Movie Database
 
-My own take on a IMDB like movie database with some social media like integrations. Supports movies, users, people, searching, notifications, etc. A simpler version without mongoDB is hosted at https://fast-inlet-04695.herokuapp.com/.
+My own take on a IMDB like movie database with some social media like integrations. Supports movies, users, people, searching, notifications, etc. A live version without mongoDB is hosted at https://fast-inlet-04695.herokuapp.com/.
 
 ![](https://i.imgur.com/wZQkwnn.png)
 
